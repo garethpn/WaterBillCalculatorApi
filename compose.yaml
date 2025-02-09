@@ -1,0 +1,6 @@
+﻿services:
+  waterbillcalculator:
+    image: waterbillcalculator
+    build:
+      context: .
+      dockerfile: WaterBillCalculator/Dockerfile
