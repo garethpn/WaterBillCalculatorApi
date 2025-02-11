@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using WaterBillCalculator.Data;
 using WaterBillCalculator.Interfaces;
 using WaterBillCalculator.Models;
-using WaterBillCalculator.Services;
 
 namespace WaterBillCalculator.Controllers;
 
@@ -17,14 +16,26 @@ public class WaterBillController : ControllerBase
         _waterBillService = waterBillService;
     }
 
-    [HttpGet("{billId}")]
-    public ActionResult<WaterBillResponse> GetBillBreakdown(BillDetails billDetails)
+    /// <summary>
+    /// Gets the meter details.
+    /// </summary>
+    /// <returns>All meter details</returns>
+    [HttpGet("MeterDetails")]
+    public ActionResult<IEnumerable<MeterDetails>> GetMeterDetails()
+    {
+        var meterDetails = _waterBillService.GetAllMeterDetails();
+        return Ok(meterDetails);
+    }
+    
+    /// <summary>
+    /// Gets the bill breakdown.
+    /// </summary>
+    /// <param name="billDetails">The bill details.</param>
+    /// <returns>The water bill response.</returns>
+    [HttpGet("GetBillBreakdown")]
+    public ActionResult<WaterBillResponse> GetBillBreakdown([FromBody] BillDetails billDetails)
     {
         var breakdown = _waterBillService.GetBillBreakdown(billDetails);
-        if (breakdown == null)
-        {
-            return NotFound();
-        }
         return Ok(breakdown);
     }
 }

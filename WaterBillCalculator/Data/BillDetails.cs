@@ -1,8 +1,13 @@
+using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
+
 namespace WaterBillCalculator.Data;
 
+[PrimaryKey("Id")]
 public class BillDetails
 {
     public int Id { get; set; }
+    
     public DateTime BillDate { get; set; }
     public decimal StandingCharge { get; set; }
     public decimal? PreviousReading { get; set; }

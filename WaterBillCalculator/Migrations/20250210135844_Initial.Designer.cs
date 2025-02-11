@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WaterBillCalculator.Data;
 
@@ -11,9 +12,11 @@ using WaterBillCalculator.Data;
 namespace WaterBillCalculator.Migrations
 {
     [DbContext(typeof(WaterBillContext))]
-    partial class WaterBillContextModelSnapshot : ModelSnapshot
+    [Migration("20250210135844_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,8 +91,8 @@ namespace WaterBillCalculator.Migrations
                         new
                         {
                             Id = 1,
-                            MeterLocation = "Main Entrance",
-                            MeterName = "Meter By Entrance",
+                            MeterLocation = "Property",
+                            MeterName = "Main Meter",
                             MeterNumber = "0001"
                         },
                         new
@@ -119,7 +122,7 @@ namespace WaterBillCalculator.Migrations
                         new
                         {
                             Id = 5,
-                            MeterLocation = "Just Before it Splits Between the Houses",
+                            MeterLocation = "Houses",
                             MeterName = "The Houses",
                             MeterNumber = "0005",
                             ParentId = 1

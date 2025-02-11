@@ -12,12 +12,7 @@ public class WaterBillService : IWaterBillService
     {
         _context = context;
     }
-
-    /// <summary>
-    /// Gets the bill breakdown.
-    /// </summary>
-    /// <param name="billDetails">The bill details.</param>
-    /// <returns>The water bill response.</returns>
+    
     public WaterBillResponse GetBillBreakdown(BillDetails billDetails)
     {
         CalculateBillShare(billDetails);
@@ -37,7 +32,13 @@ public class WaterBillService : IWaterBillService
             Remainder = GetBillDifference(billDetails)
         };
     }
-    
+
+    public IEnumerable<MeterDetails> GetAllMeterDetails()
+    {
+        var meterDetails = _context.Meters.ToList();
+        return meterDetails;
+    }
+
     private void CalculateBillShare(BillDetails billDetails)
     {
         foreach (var meterReading in billDetails.MeterReadings)
@@ -54,6 +55,9 @@ public class WaterBillService : IWaterBillService
 
             // Calculate the CalculatedBillShare
             meterReading.CalculatedBillShare = Math.Round((billDetails.StandingCharge / billDetails.MeterReadings.Count) + (readingDifference * billDetails.UnitPrice), 2);
+            
+            // Add the meter reading to the context
+            _context.Readings.Add(meterReading);
         }
 
         _context.SaveChanges();

@@ -1,7 +1,11 @@
+using System.Data.Entity;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.EntityFramework;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace WaterBillCalculator.Data
 {
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class WaterBillContext : DbContext
     {
         public WaterBillContext(DbContextOptions<WaterBillContext> options)
@@ -9,10 +13,10 @@ namespace WaterBillCalculator.Data
         {
         }
 
-        public virtual DbSet<BillDetails> Bills { get; set; }
-        public virtual DbSet<MeterDetails> Meters { get; set; }
-        public virtual DbSet<MeterReadings> Readings { get; set; }
-
+        public virtual Microsoft.EntityFrameworkCore.DbSet<BillDetails> Bills { get; set; }
+        public virtual Microsoft.EntityFrameworkCore.DbSet<MeterDetails> Meters { get; set; }
+        public virtual Microsoft.EntityFrameworkCore.DbSet<MeterReadings> Readings { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BillDetails>()
@@ -39,7 +43,7 @@ namespace WaterBillCalculator.Data
             
             // Seed data
             modelBuilder.Entity<MeterDetails>().HasData(
-                new MeterDetails { Id = 1, MeterName = "Main Meter", MeterLocation = "Property", MeterNumber = "0001" },
+                new MeterDetails { Id = 1, MeterName = "Meter By Entrance", MeterLocation = "Main Entrance", MeterNumber = "0001" },
                 new MeterDetails
                 {
                     Id = 2, MeterName = "Peters Upper Field", MeterLocation = "Upper Field", MeterNumber = "0002",
@@ -53,7 +57,7 @@ namespace WaterBillCalculator.Data
                 new MeterDetails
                     { Id = 4, MeterName = "Our Field", MeterLocation = "Our Field", MeterNumber = "0004", ParentId = 1 },
                 new MeterDetails
-                    { Id = 5, MeterName = "The Houses", MeterLocation = "Houses", MeterNumber = "0005", ParentId = 1 },
+                    { Id = 5, MeterName = "The Houses", MeterLocation = "Just Before it Splits Between the Houses", MeterNumber = "0005", ParentId = 1 },
                 new MeterDetails
                 {
                     Id = 6, MeterName = "Riverbank Cottage", MeterLocation = "Riverbank Cottage", MeterNumber = "0006",

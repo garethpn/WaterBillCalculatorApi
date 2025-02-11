@@ -1,5 +1,9 @@
+using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
+
 namespace WaterBillCalculator.Data;
 
+[PrimaryKey("Id")]
 public class MeterReadings
 {
     public int Id { get; set; }
@@ -11,5 +15,6 @@ public class MeterReadings
     public decimal? CalculatedBillShare { get; set; }
     
     // Navigation property
+    [JsonIgnore]
     public MeterDetails Meter { get; set; }
 }
