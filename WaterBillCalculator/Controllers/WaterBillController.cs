@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using WaterBillCalculator.Data;
 using WaterBillCalculator.Interfaces;
@@ -21,6 +22,7 @@ public class WaterBillController : ControllerBase
     /// </summary>
     /// <returns>All meter details</returns>
     [HttpGet("MeterDetails")]
+    [EnableCors("AllowLocalhost")]
     public ActionResult<IEnumerable<MeterDetails>> GetMeterDetails()
     {
         var meterDetails = _waterBillService.GetAllMeterDetails();
@@ -33,6 +35,7 @@ public class WaterBillController : ControllerBase
     /// <param name="billDetails">The bill details.</param>
     /// <returns>The water bill response.</returns>
     [HttpGet("GetBillBreakdown")]
+    [EnableCors("AllowLocalhost")]
     public ActionResult<WaterBillResponse> GetBillBreakdown([FromBody] BillDetails billDetails)
     {
         var breakdown = _waterBillService.GetBillBreakdown(billDetails);

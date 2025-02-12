@@ -1,13 +1,76 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: lightgrey !important; /* Light gray color */
+}
+
+.parallax {
+  position: relative;
+  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.parallax::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('images/rain.jpg'); /* Replace with your image path */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
+}
+
+.accordion-button::after {
+  display: none;
+}
+
+.accordion-button, .card-header {
+  background-color: #A4BE5C !important; /* Light olive green color */
+  color: black !important; /* Optional: to make the text color white */
+}
+
+.page-title {
+  font-family: 'Pacifico', cursive;
+  font-weight: bold;
+  font-size: 5rem;
+  text-align: center;
+  color: #FFD700; /* Light yellow color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+}
+
+.btn-primary {
+  background-color: #A4BE5C; /* Light olive green color */
+  border-color: darkolivegreen;
+  color: black; /* Optional: to make the text color white */
+  margin-bottom: 20px;
+  width: 50%;
+  letter-spacing: 5px;
+}
+
+.btn-primary:hover {
+  background-color: darkolivegreen;
+  border-color: #A4BE5C;
+  color: white; /* Optional: to make the text color black */
 }

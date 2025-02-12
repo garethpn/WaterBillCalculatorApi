@@ -22,12 +22,24 @@ builder.Services.AddDbContext<WaterBillContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("WaterBillDatabase"), new MySqlServerVersion(new Version(8, 0, 25)));
 });
 
+// Add CORS services and configure the policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost",
+        builder => builder
+            .WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Water Bill API v1"));
 
+// Apply the CORS policy
+app.UseCors("AllowLocalhost");
 
 app.MapControllers();
 

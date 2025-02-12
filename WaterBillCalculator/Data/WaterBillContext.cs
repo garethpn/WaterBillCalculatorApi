@@ -43,35 +43,32 @@ namespace WaterBillCalculator.Data
             
             // Seed data
             modelBuilder.Entity<MeterDetails>().HasData(
-                new MeterDetails { Id = 1, MeterName = "Meter By Entrance", MeterLocation = "Main Entrance", MeterNumber = "0001" },
                 new MeterDetails
                 {
-                    Id = 2, MeterName = "Peters Upper Field", MeterLocation = "Upper Field", MeterNumber = "0002",
-                    ParentId = 1
+                    Id = 1, MeterName = "Peters Upper Field", MeterLocation = "Upper Field", MeterNumber = "0002"
                 },
                 new MeterDetails
                 {
-                    Id = 3, MeterName = "Peters Lower Field", MeterLocation = "Lower Field", MeterNumber = "0003",
-                    ParentId = 1
+                    Id = 2, MeterName = "Peters Lower Field", MeterLocation = "Lower Field", MeterNumber = "0003",
                 },
                 new MeterDetails
-                    { Id = 4, MeterName = "Our Field", MeterLocation = "Our Field", MeterNumber = "0004", ParentId = 1 },
+                    { Id = 3, MeterName = "Our Field", MeterLocation = "Our Field", MeterNumber = "0004"},
                 new MeterDetails
-                    { Id = 5, MeterName = "The Houses", MeterLocation = "Just Before it Splits Between the Houses", MeterNumber = "0005", ParentId = 1 },
+                    { Id = 4, MeterName = "The Houses", MeterLocation = "Just Before it Splits Between the Houses", MeterNumber = "0005"},
                 new MeterDetails
                 {
-                    Id = 6, MeterName = "Riverbank Cottage", MeterLocation = "Riverbank Cottage", MeterNumber = "0006",
-                    ParentId = 5
+                    Id = 5, MeterName = "Riverbank Cottage", MeterLocation = "Riverbank Cottage", MeterNumber = "0006",
+                    ParentId = 4
                 },
                 new MeterDetails
                 {
-                    Id = 7, MeterName = "Riverside Barn", MeterLocation = "Riverside Barn", MeterNumber = "0007",
-                    ParentId = 5
+                    Id = 6, MeterName = "Riverside Barn", MeterLocation = "Riverside Barn", MeterNumber = "0007",
+                    ParentId = 4
                 },
                 new MeterDetails
                 {
                     Id = 8, MeterName = "Waunwen Farm House", MeterLocation = "Waunwen Farm House", MeterNumber = "0008",
-                    ParentId = 5
+                    ParentId = 4
                 });
         }
     }

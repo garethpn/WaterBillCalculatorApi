@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,19 @@ public class MeterDetails
     public string MeterLocation { get; set; }
     public string MeterName { get; set; }
     public int? ParentId { get; set; }
+
+    [NotMapped]
+    public decimal? LatestReading
+    {
+        get
+        {
+            if (MeterReadings != null && MeterReadings.Count == 0)
+            {
+                return null;
+            }
+            return MeterReadings?.OrderByDescending(m => m.ReadingDate).First().Reading;
+        }
+    }
     
     // Navigation property
     [JsonIgnore]
@@ -20,5 +34,5 @@ public class MeterDetails
     public ICollection<MeterDetails> ChildMeters { get; set; }
     
     [JsonIgnore]
-    public ICollection<MeterReadings> MeterReadings { get; set; }
+    public ICollection<MeterReadings>? MeterReadings { get; set; }
 }

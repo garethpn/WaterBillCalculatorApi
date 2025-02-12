@@ -50,7 +50,7 @@ public class WaterBillService : IWaterBillService
                 .FirstOrDefault();
 
             // Calculate the difference between the current reading and the latest reading (or PreviousReading if no latest reading is available)
-            decimal previousReading = latestReading?.Reading ?? billDetails.PreviousReading ?? 0;
+            decimal previousReading = latestReading?.Reading ?? meterReading.PreviousReading ?? 0;
             decimal readingDifference = meterReading.Reading - previousReading;
 
             // Calculate the CalculatedBillShare

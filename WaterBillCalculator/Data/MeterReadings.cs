@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +10,8 @@ public class MeterReadings
 {
     public int Id { get; set; }
     public DateTime ReadingDate { get; set; }
+    
+    [NotMapped]
     public decimal? PreviousReading { get; set; }
     public decimal Reading { get; set; }
     public int MeterId { get; set; }
