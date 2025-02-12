@@ -1,4 +1,6 @@
+## Water Bill Calculator
 
+Splits the water bill and gives a full brakdown of costs as our meter serves a few different properties.
 
 <details>
 
